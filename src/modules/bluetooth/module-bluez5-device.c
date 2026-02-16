@@ -2504,7 +2504,9 @@ static pa_hook_result_t transport_sink_volume_changed_cb(pa_bluetooth_discovery 
     if (t != u->transport)
       return PA_HOOK_OK;
 
-    if (pa_bluetooth_droid_backend(y))
+    if (t->profile != PA_BLUETOOTH_PROFILE_A2DP_SINK &&
+        t->profile != PA_BLUETOOTH_PROFILE_A2DP_SOURCE &&
+        pa_bluetooth_droid_backend(y))
         return PA_HOOK_OK;
 
     volume = t->sink_volume;
@@ -2535,7 +2537,9 @@ static pa_hook_result_t transport_source_volume_changed_cb(pa_bluetooth_discover
     if (t != u->transport)
       return PA_HOOK_OK;
 
-    if (pa_bluetooth_droid_backend(y))
+    if (t->profile != PA_BLUETOOTH_PROFILE_A2DP_SINK &&
+        t->profile != PA_BLUETOOTH_PROFILE_A2DP_SOURCE &&
+        pa_bluetooth_droid_backend(y))
         return PA_HOOK_OK;
 
     volume = t->source_volume;
